@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlphaNet | Hackworth OptimaShort — June 2026 Performance Report</title>
+<meta property="og:title" content="Hackworth OptimaShort - June 2026 Monthly Performance" />
+<meta property="og:description" content="June 2026 monthly performance analysis: 4 OptimaShort strategies (DOGE, ADA, SOL, LINK) all positive in a challenging market." />
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+        --bg: #000000;
+        --bg-panel: #0a0a0a;
+        --bg-elevated: #111111;
+        --border: #222222;
+        --border-light: #333333;
+        --text: #e8e8e8;
+        --text-secondary: #999999;
+        --text-tertiary: #666666;
+        --accent-blue: #2979ff;
+        --accent-yellow: #ffb300;
+        --accent-green: #00c853;
+        --accent-red: #ff1744;
+        --accent-orange: #FFA500;
+        --font-mono: 'SF Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+        --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text);
+        line-height:1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width:960px; margin:0 auto; padding:0 24px; }
+
+    /* Top Bar */
+    .top-bar {
+        background: var(--bg-panel);
+        border-bottom:1px solid var(--border);
+        padding:12px 0;
+        position:sticky; top:0; z-index:100;
+    }
+    .top-bar-inner {
+        display:flex; justify-content:space-between; align-items:center;
+        max-width:960px; margin:0 auto; padding:0 24px;
+    }
+    .top-bar-brand { display:flex; align-items:center; gap:10px; }
+    .top-bar-brand img { height:22px; vertical-align:middle; }
+    .top-bar-meta {
+        font-family:var(--font-mono); font-size:11px;
+        color:var(--text-tertiary); letter-spacing:1px;
+    }
+
+    /* Hero */
+    .hero {
+        padding:64px 0 48px;
+        border-bottom:1px solid var(--border);
+    }
+    .hero-label {
+        font-family:var(--font-mono); font-size:10px;
+        font-weight:600; color:var(--accent-blue);
+        letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;
+    }
+    .hero h1 {
+        font-size:36px; font-weight:700; line-height:1.2;
+        margin-bottom:12px; letter-spacing:-0.5px;
+    }
+    .hero h1 span { color:var(--accent-blue); }
+    .hero-subtitle {
+        font-size:15px; color:var(--text-secondary);
+        max-width:680px; line-height:1.65;
+    }
+
+    /* Summary strip */
+    .summary-strip {
+        display:flex; gap:24px; flex-wrap:wrap;
+        padding:32px 0 0;
+    }
+    .summary-item { flex:1; min-width:140px; }
+    .summary-item .label {
+        font-family:var(--font-mono); font-size:10px;
+        color:var(--text-tertiary); letter-spacing:1px;
+        text-transform:uppercase; margin-bottom:4px;
+    }
+    .summary-item .value {
+        font-family:var(--font-mono); font-size:22px; font-weight:600;
+    }
+
+    /* Sections */
+    section { margin-bottom:48px; padding-top:28px; }
+    .section-num {
+        font-family:var(--font-mono); font-size:10px;
+        font-weight:600; letter-spacing:2px;
+        text-transform:uppercase; color:var(--accent-blue); margin-bottom:8px;
+    }
+    .section-title {
+        font-size:18px; font-weight:600; color:var(--text);
+        letter-spacing:-0.3px; margin-bottom:24px;
+    }
+
+    /* Cards */
+    .card-grid {
+        display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+        gap:16px;
+    }
+    .card {
+        background:var(--bg-panel); border:1px solid var(--border);
+        padding:24px; transition:background 0.15s;
+    }
+    .card:hover { background:var(--bg-elevated); }
+    .card-header {
+        font-family:var(--font-mono); font-size:12px;
+        font-weight:600; letter-spacing:1px;
+        color:var(--text-secondary); margin-bottom:12px;
+    }
+    .card-value {
+        font-family:var(--font-mono); font-size:32px;
+        font-weight:700; margin-bottom:4px;
+    }
+    .card-value.positive { color:var(--accent-green); }
+    .card-value.negative { color:var(--accent-red); }
+    .card-value.neutral { color:var(--text); }
+    .card-sub { font-size:13px; color:var(--text-tertiary); }
+
+    /* Table */
+    .data-table {
+        width:100%; border-collapse:collapse;
+        font-family:var(--font-mono); font-size:12px;
+    }
+    .data-table thead th {
+        text-align:left; padding:12px 14px;
+        border-bottom:1px solid var(--border-light);
+        border-top:1px solid var(--border);
+        color:var(--text-tertiary); font-weight:600;
+        letter-spacing:1px; font-size:10px; text-transform:uppercase;
+        background:var(--bg-panel);
+    }
+    .data-table tbody td {
+        padding:12px 14px; border-bottom:1px solid var(--border);
+        color:var(--text-secondary);
+    }
+    .data-table tbody tr:hover td { background:var(--bg-panel); color:var(--text); }
+    .data-table .highlight { color:var(--accent-green); font-weight:600; }
+    .data-table .warning { color:var(--accent-red); font-weight:600; }
+    .data-table .neutral { color:var(--accent-yellow); }
+
+    /* Insight blocks */
+    .insight-block {
+        background:var(--bg-panel);
+        border-left:2px solid var(--accent-blue);
+        padding:20px 24px; margin-bottom:16px;
+    }
+    .insight-block.red { border-left-color:var(--accent-red); }
+    .insight-block.green { border-left-color:var(--accent-green); }
+    .insight-block.orange { border-left-color:var(--accent-orange); }
+    .insight-label {
+        font-family:var(--font-mono); font-size:10px;
+        font-weight:600; text-transform:uppercase;
+        letter-spacing:1.5px; margin-bottom:8px;
+    }
+    .insight-label.good { color:var(--accent-green); }
+    .insight-label.bad { color:var(--accent-red); }
+    .insight-label.obs { color:var(--accent-blue); }
+    .insight-label.warn-label { color:var(--accent-orange); }
+    .insight-text { font-size:14px; line-height:1.7; color:var(--text-secondary); }
+    .insight-text strong { color:var(--text); }
+
+    /* Trade stat row */
+    .trade-stats {
+        display:flex; gap:16px; margin-bottom:20px;
+    }
+    .trade-stat {
+        flex:1; text-align:center;
+        background:rgba(255,255,255,0.02);
+        border:1px solid var(--border); border-radius:4px;
+        padding:14px 8px;
+    }
+    .trade-stat .ts-val {
+        font-family:var(--font-mono); font-size:20px;
+        font-weight:700;
+    }
+    .trade-stat .ts-label {
+        font-family:var(--font-mono); font-size:9px;
+        color:var(--text-tertiary); text-transform:uppercase;
+        letter-spacing:1px; margin-top:4px;
+    }
+    .ts-val.green { color:var(--accent-green); }
+    .ts-val.yellow { color:var(--accent-yellow); }
+    .ts-val.blue { color:var(--accent-blue); }
+    .ts-val.red { color:var(--accent-red); }
+
+    /* Viz bars */
+    .viz-block { margin-top:32px; }
+    .viz-row {
+        display:flex; align-items:center; gap:16px;
+        margin-bottom:12px;
+    }
+    .viz-label {
+        font-family:var(--font-mono); font-size:11px; font-weight:600;
+        min-width:80px;
+    }
+    .viz-label.doge { color:#ffb300; }
+    .viz-label.ada { color:var(--accent-green); }
+    .viz-label.sol { color:var(--accent-blue); }
+    .viz-label.link { color:var(--accent-yellow); }
+    .viz-track {
+        flex:1; height:24px; background:rgba(255,255,255,0.03);
+        border-radius:3px; overflow:hidden; position:relative;
+        border:1px solid var(--border);
+    }
+    .viz-fill {
+        height:100%; border-radius:3px;
+        font-family:var(--font-mono); font-size:9px;
+        display:flex; align-items:center; padding-left:8px;
+        font-weight:600;
+    }
+    .viz-fill.doge-fill {
+        background:linear-gradient(90deg,rgba(255,179,0,0.25),rgba(255,179,0,0.08));
+        color:#ffb300; border:1px solid rgba(255,179,0,0.2);
+    }
+    .viz-fill.ada-fill {
+        background:linear-gradient(90deg,rgba(0,200,83,0.25),rgba(0,200,83,0.08));
+        color:var(--accent-green); border:1px solid rgba(0,200,83,0.2);
+    }
+    .viz-fill.sol-fill {
+        background:linear-gradient(90deg,rgba(41,121,255,0.25),rgba(41,121,255,0.08));
+        color:var(--accent-blue); border:1px solid rgba(41,121,255,0.2);
+    }
+    .viz-fill.link-fill {
+        background:linear-gradient(90deg,rgba(255,179,0,0.25),rgba(255,179,0,0.08));
+        color:var(--accent-yellow); border:1px solid rgba(255,179,0,0.2);
+    }
+    .viz-val {
+        font-family:var(--font-mono); font-size:13px; font-weight:700;
+        min-width:70px; text-align:right;
+    }
+    .viz-val.up { color:var(--accent-green); }
+
+    /* Narrative blocks */
+    .narrative-block {
+        background:var(--bg-panel); border:1px solid var(--border);
+        padding:24px; margin-bottom:24px;
+    }
+    .narrative-block h4 {
+        font-size:14px; font-weight:600; color:var(--text);
+        margin-bottom:12px; display:flex; align-items:center; gap:8px;
+    }
+    .narrative-block h4 .icon {
+        font-family:var(--font-mono); font-size:11px; font-weight:700;
+        padding:3px 8px; border-radius:3px;
+    }
+    .narrative-block h4 .icon.doge-icon { background:rgba(255,179,0,0.15); color:#ffb300; }
+    .narrative-block h4 .icon.ada-icon { background:rgba(0,200,83,0.15); color:var(--accent-green); }
+    .narrative-block h4 .icon.sol-icon { background:rgba(41,121,255,0.15); color:var(--accent-blue); }
+    .narrative-block h4 .icon.link-icon { background:rgba(255,179,0,0.15); color:var(--accent-yellow); }
+    .narrative-block p { font-size:13px; color:var(--text-secondary); line-height:1.8; }
+    .narrative-block .tag {
+        display:inline-block; font-family:var(--font-mono); font-size:10px;
+        font-weight:600; padding:2px 8px; border-radius:3px;
+        letter-spacing:0.5px; margin:0 2px;
+    }
+    .tag.green { background:rgba(0,200,83,0.12); color:var(--accent-green); }
+    .tag.amber { background:rgba(255,179,0,0.12); color:var(--accent-yellow); }
+    .tag.red { background:rgba(255,23,68,0.12); color:var(--accent-red); }
+    .tag.blue { background:rgba(41,121,255,0.12); color:var(--accent-blue); }
+
+    /* Footer */
+    .footer {
+        padding:64px 0 72px; color:var(--text-tertiary);
+        font-family:var(--font-sans); font-size:13px; line-height:1.7;
+        border-top:1px solid var(--border-light);
+    }
+    .footer .container { text-align:left; }
+    .footer-logo { height:24px; margin-bottom:20px; display:block; }
+    .footer-nav {
+        display:flex; gap:48px;
+        margin-bottom:28px;
+    }
+    .footer-nav a {
+        color:var(--text-secondary); text-decoration:none;
+        font-size:14px; transition:color 0.2s;
+    }
+    .footer-nav a:hover { color:var(--text); }
+    .footer-disclaimer {
+        font-size:12px; line-height:1.8;
+    }
+
+    @media (max-width:768px) {
+        .hero h1 { font-size:24px; }
+        .card-grid { grid-template-columns:1fr; }
+        .trade-stats { flex-wrap:wrap; }
+        .summary-strip { gap:16px; }
+        .viz-label { min-width:50px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="top-bar-inner">
+        <div class="top-bar-brand">
+            <img src="https://alphanet.global/assets/logo-Bx0-plbv.webp" alt="AlphaNet">
+        </div>
+        <div class="top-bar-meta">JUNE 30, 2026 // MONTHLY REPORT</div>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-label">Monthly Performance Analysis</div>
+    <h1>Hackworth OptimaShort<br><span>June 2026 Strategy Performance</span></h1>
+    <p class="hero-subtitle">
+        June 2026 saw significant crypto market turbulence — and <strong>Hackworth OptimaShort</strong> turned it into opportunity.
+        This report analyzes how the engine delivered positive PnL across 4 perpetual futures pairs —
+        DOGE, ADA, SOL, and LINK — converting market dislocation into alpha for all four.
+    </p>
+    <div class="summary-strip">
+        <div class="summary-item">
+            <div class="label">Period</div>
+            <div class="value" style="color:var(--text);">June 2026</div>
+        </div>
+        <div class="summary-item">
+            <div class="label">Strategies</div>
+            <div class="value" style="color:var(--accent-blue);">4 pairs</div>
+        </div>
+        <div class="summary-item">
+            <div class="label">June Winners</div>
+            <div class="value" style="color:var(--accent-green);">4 / 4</div>
+        </div>
+        <div class="summary-item">
+            <div class="label">Avg June ROI</div>
+            <div class="value" style="color:var(--accent-green);">+16.7%</div>
+        </div>
+        <div class="summary-item">
+            <div class="label">Net Outcome</div>
+            <div class="value" style="color:var(--accent-green);">Positive</div>
+        </div>
+    </div>
+</div>
+
+<!-- 00 // MARKET CONTEXT -->
+<section>
+    <div class="section-num">00 // MARKET CONTEXT</div>
+    <h2 class="section-title">June 2026: OptimaShort's Playground</h2>
+
+    <div class="timeline">
+        <div class="timeline-card" style="background:var(--bg-panel);border:1px solid var(--border);padding:20px;position:relative;">
+            <div style="display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:8px;vertical-align:middle;background:var(--accent-red);"></div>
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;">JUN 4–5</span>
+            <h4 style="font-size:14px;font-weight:600;color:var(--text);margin:10px 0 8px;">ZEC Privacy Crisis</h4>
+            <p style="font-size:12px;color:var(--text-tertiary);line-height:1.6;">ZEC privacy sector event creates significant market dislocation. The OptimaShort engine's short-bias positioning captures the opportunity across affected pairs.</p>
+        </div>
+        <div class="timeline-card" style="background:var(--bg-panel);border:1px solid var(--border);padding:20px;position:relative;">
+            <div style="display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:8px;vertical-align:middle;background:var(--accent-orange);"></div>
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;">JUN (ONGOING)</span>
+            <h4 style="font-size:14px;font-weight:600;color:var(--text);margin:10px 0 8px;">BTC Macro Drag</h4>
+            <p style="font-size:12px;color:var(--text-tertiary);line-height:1.6;">Bitcoin and ETH experience significant price adjustments throughout June. Fear &amp; Greed Index at 28 — ideal conditions for the OptimaShort engine's short-bias signals to thrive.</p>
+        </div>
+        <div class="timeline-card" style="background:var(--bg-panel);border:1px solid var(--border);padding:20px;position:relative;">
+            <div style="display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:8px;vertical-align:middle;background:var(--accent-yellow);"></div>
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;">JUN (ONGOING)</span>
+            <h4 style="font-size:14px;font-weight:600;color:var(--text);margin:10px 0 8px;">Altcoin Bear Market</h4>
+            <p style="font-size:12px;color:var(--text-tertiary);line-height:1.6;">Broad altcoin price adjustments throughout June create a favorable environment for the OptimaShort engine's short-bias signals across DOGE, ADA, SOL, and LINK.</p>
+        </div>
+    </div>
+
+    <!-- Price strips -->
+    <div style="margin-top:32px;">
+        <div class="viz-row">
+            <span class="viz-label doge">DOGE</span>
+            <div class="viz-track">
+                <div class="viz-fill doge-fill" style="width:100%;">+28.1% June ROI · Best performer</div>
+            </div>
+            <span class="viz-val up">+28.1%</span>
+        </div>
+        <div class="viz-row">
+            <span class="viz-label ada">ADA</span>
+            <div class="viz-track">
+                <div class="viz-fill ada-fill" style="width:53%;">+14.9% June ROI</div>
+            </div>
+            <span class="viz-val up">+14.9%</span>
+        </div>
+        <div class="viz-row">
+            <span class="viz-label sol">SOL</span>
+            <div class="viz-track">
+                <div class="viz-fill sol-fill" style="width:50%;">+14.2% June ROI</div>
+            </div>
+            <span class="viz-val up">+14.2%</span>
+        </div>
+        <div class="viz-row">
+            <span class="viz-label link">LINK</span>
+            <div class="viz-track">
+                <div class="viz-fill link-fill" style="width:34%;">+9.7% June ROI</div>
+            </div>
+            <span class="viz-val up">+9.7%</span>
+        </div>
+    </div>
+</section>
+
+<!-- 01 // PERFORMANCE SCORECARD -->
+<section>
+    <div class="section-num">01 // PERFORMANCE SCORECARD</div>
+    <h2 class="section-title">Strategy Performance Matrix</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Pair</th>
+                <th>June ROI</th>
+                <th>May ROI</th>
+                <th>Δ MoM</th>
+                <th>Q2 ROI</th>
+                <th>YTD 2026</th>
+                <th>Cumul. ROI</th>
+                <th>Sharpe</th>
+                <th>Max DD</th>
+                <th>Win %</th>
+                <th>Trades</th>
+                <th>Ver</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">DOGE</td>
+                <td class="highlight">+28.1%</td>
+                <td class="neutral">−9.0%</td>
+                <td class="highlight">+37.1</td>
+                <td class="highlight">+24.3%</td>
+                <td class="highlight">+30.3%</td>
+                <td class="highlight">+1,876.7%</td>
+                <td>3.46</td>
+                <td>17.99%</td>
+                <td>52.9%</td>
+                <td>3,511</td>
+                <td>V2</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">ADA</td>
+                <td class="highlight">+14.9%</td>
+                <td class="highlight">+3.0%</td>
+                <td class="highlight">+11.9</td>
+                <td class="highlight">+14.0%</td>
+                <td class="highlight">+26.8%</td>
+                <td class="highlight">+808.0%</td>
+                <td>2.43</td>
+                <td>16.46%</td>
+                <td>52.0%</td>
+                <td>2,017</td>
+                <td>V1</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">SOL</td>
+                <td class="highlight">+14.2%</td>
+                <td class="highlight">+5.8%</td>
+                <td class="highlight">+8.4</td>
+                <td class="highlight">+16.5%</td>
+                <td class="highlight">+18.6%</td>
+                <td class="highlight">+524.0%</td>
+                <td>3.18</td>
+                <td>23.88%</td>
+                <td>51.7%</td>
+                <td>263</td>
+                <td>V1</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">LINK</td>
+                <td class="highlight">+9.7%</td>
+                <td class="highlight">+2.1%</td>
+                <td class="highlight">+7.6</td>
+                <td class="highlight">+12.2%</td>
+                <td class="highlight">+13.4%</td>
+                <td class="highlight">+897.3%</td>
+                <td>2.60</td>
+                <td>18.95%</td>
+                <td>51.0%</td>
+                <td>5,121</td>
+                <td>V1</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 02 // MONTHLY BREAKDOWN -->
+<section>
+    <div class="section-num">02 // MONTHLY BREAKDOWN</div>
+    <h2 class="section-title">2026 Monthly ROI by Strategy</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Asset</th>
+                <th>Jan</th>
+                <th>Feb</th>
+                <th>Mar</th>
+                <th>Apr</th>
+                <th>May</th>
+                <th>Jun</th>
+                <th>YTD Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">DOGE</td>
+                <td class="highlight">+5.7%</td>
+                <td class="highlight">+5.7%</td>
+                <td class="neutral">−0.4%</td>
+                <td class="highlight">+0.6%</td>
+                <td class="highlight">+5.2%</td>
+                <td class="neutral">−9.0%</td>
+                <td class="highlight">+28.1%</td>
+                <td class="highlight">+30.3%</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">ADA</td>
+                <td class="highlight">+8.4%</td>
+                <td class="highlight">+2.7%</td>
+                <td class="highlight">+1.6%</td>
+                <td class="neutral">−3.9%</td>
+                <td class="highlight">+3.0%</td>
+                <td class="highlight">+14.9%</td>
+                <td class="highlight">+26.8%</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">SOL</td>
+                <td class="neutral">−9.6%</td>
+                <td class="highlight">+7.8%</td>
+                <td class="highlight">+3.9%</td>
+                <td class="neutral">−3.5%</td>
+                <td class="highlight">+5.8%</td>
+                <td class="highlight">+14.2%</td>
+                <td class="highlight">+18.6%</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">LINK</td>
+                <td class="highlight">+2.3%</td>
+                <td class="neutral">−3.2%</td>
+                <td class="highlight">+2.0%</td>
+                <td class="highlight">+0.5%</td>
+                <td class="highlight">+2.1%</td>
+                <td class="highlight">+9.7%</td>
+                <td class="highlight">+13.4%</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 03 // DEEP DIVE — DOGE -->
+<section>
+    <div class="section-num">03 // DEEP DIVE — DOGE</div>
+    <h2 class="section-title">Top Performer: Engine Calibration at Its Best</h2>
+
+    <div class="trade-stats">
+        <div class="trade-stat">
+            <div class="ts-val green">+28.1%</div>
+            <div class="ts-label">June ROI · Best</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+37.1</div>
+            <div class="ts-label">Δ MoM · Best</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+24.3%</div>
+            <div class="ts-label">Q2 ROI</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val yellow">3.46</div>
+            <div class="ts-label">Sharpe · Highest</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val blue">17.99%</div>
+            <div class="ts-label">Max DD</div>
+        </div>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon doge-icon">DOGE</span> Engine Calibration at Its Best</h4>
+        <p>
+            DOGE delivered the highest June ROI at <span class="tag green">+28.1%</span>, powered by the V2 engine's adaptive real-time learning.
+            The model recalibrated signals entering June and caught the bearish continuation with precision, delivering a <span class="tag green">+37.1</span> month-over-month improvement — the largest in the cohort.
+            With the <strong>highest Sharpe (3.46)</strong> and second-lowest max drawdown (17.99%), DOGE is the risk-adjusted champion.
+            The low 16.4% net exposure confirms capital efficiency — outsized returns from minimal capital at risk.
+            3,511 lifetime trades with a 52.9% win rate demonstrate that the V2 engine's improved signal filtering is clearly differentiating from V1.
+        </p>
+    </div>
+</section>
+
+<!-- 04 // DEEP DIVE — ADA -->
+<section>
+    <div class="section-num">04 // DEEP DIVE — ADA</div>
+    <h2 class="section-title">Steady Accelerator: Tripling May's Gains</h2>
+
+    <div class="trade-stats">
+        <div class="trade-stat">
+            <div class="ts-val green">+14.9%</div>
+            <div class="ts-label">June ROI</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+3.0%</div>
+            <div class="ts-label">May ROI</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+11.9</div>
+            <div class="ts-label">Δ MoM</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val yellow">2.43</div>
+            <div class="ts-label">Sharpe</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">16.46%</div>
+            <div class="ts-label">Max DD · Lowest</div>
+        </div>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon ada-icon">ADA</span> Consistent Alpha with Lowest Risk</h4>
+        <p>
+            ADA posted a strong <span class="tag green">+14.9%</span> in June, nearly tripling May's <span class="tag green">+3.0%</span>.
+            The engine's ability to flip signals as market regime shifts is on full display — ADA accelerated into June with conviction.
+            ADA's <strong>lowest max drawdown in the cohort (16.46%)</strong> and 52.0% win rate make it a consistent, dependable performer.
+            With 2,017 lifetime trades, the V1 model demonstrates robust alpha discovery.
+            June's performance was driven by correct short positioning during ADA's bearish trend, aided by the engine's dynamic position sizing.
+        </p>
+    </div>
+</section>
+
+<!-- 05 // DEEP DIVE — SOL -->
+<section>
+    <div class="section-num">05 // DEEP DIVE — SOL</div>
+    <h2 class="section-title">Capital Efficiency: 263 Trades, +524% Cumulative</h2>
+
+    <div class="trade-stats">
+        <div class="trade-stat">
+            <div class="ts-val green">+14.2%</div>
+            <div class="ts-label">June ROI · Best 2026</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+5.8%</div>
+            <div class="ts-label">May ROI</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+8.4</div>
+            <div class="ts-label">Δ MoM</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val yellow">3.18</div>
+            <div class="ts-label">Sharpe</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val blue">263</div>
+            <div class="ts-label">Lifetime Trades</div>
+        </div>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon sol-icon">SOL</span> Quality Over Quantity</h4>
+        <p>
+            SOL delivered <span class="tag green">+14.2%</span> in June, its best month of 2026.
+            The strategy built on May's <span class="tag green">+5.8%</span> momentum with accelerating gains,
+            demonstrating the engine's improving signal selection as market conditions shifted.
+            With only 263 lifetime trades, SOL is the <strong>most capital-efficient</strong> strategy in the cohort —
+            extracting +524% cumulative ROI from minimal trade frequency.
+            The 51.7% win rate and 3.18 Sharpe indicate high-quality signal selection over raw volume.
+            Fewer trades, higher conviction — the anti-volume approach that delivers outsized returns.
+        </p>
+    </div>
+</section>
+
+<!-- 06 // DEEP DIVE — LINK -->
+<section>
+    <div class="section-num">06 // DEEP DIVE — LINK</div>
+    <h2 class="section-title">Steady Climber: The Dependable Workhorse</h2>
+
+    <div class="trade-stats">
+        <div class="trade-stat">
+            <div class="ts-val green">+9.7%</div>
+            <div class="ts-label">June ROI</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+2.1%</div>
+            <div class="ts-label">May ROI</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val green">+7.6</div>
+            <div class="ts-label">Δ MoM</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val yellow">2.60</div>
+            <div class="ts-label">Sharpe</div>
+        </div>
+        <div class="trade-stat">
+            <div class="ts-val blue">5,121</div>
+            <div class="ts-label">Lifetime Trades · Most</div>
+        </div>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon link-icon">LINK</span> Consistency at Scale</h4>
+        <p>
+            LINK delivered a solid <span class="tag green">+9.7%</span> in June, accelerating from May's <span class="tag green">+2.1%</span>.
+            The V1 model has been remarkably consistent — with a steady YTD of <span class="tag green">+13.4%</span> and improving month-over-month performance.
+            The <strong>highest trade count in the cohort (5,121 lifetime trades)</strong> shows active signal generation and frequent market engagement.
+            With 18.95% max drawdown and 51.0% win rate, LINK offers dependable alpha with moderate risk.
+            June's performance demonstrates the engine's ability to navigate LINK's market conditions through well-timed short-side positioning.
+        </p>
+    </div>
+</section>
+
+<!-- 07 // ENGINE ANALYSIS -->
+<section>
+    <div class="section-num">07 // ENGINE ANALYSIS</div>
+    <h2 class="section-title">How Hackworth OptimaShort Engine Drove June Performance</h2>
+
+    <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;max-width:680px;">
+        The Hackworth OptimaShort is a SOTA multi-alpha strategy engine powered by proprietary deep learning, designed with a
+        <strong style="color:var(--text);">neutral market profile with increased short-bias</strong>. June 2026 showcased the engine's structural advantage —
+        all 4 strategies delivered positive ROI, translating market dislocation directly into alpha.
+    </p>
+
+    <div class="insight-block green">
+        <div class="insight-label good">STRENGTH · ADAPTIVE SHORT-BIAS</div>
+        <div class="insight-text">
+            The engine's inherent short-bias was a decisive advantage in June. <strong>All 4 strategies ended the month positive</strong>, averaging +16.7% ROI vs a market that fell 18–33%. The short-bias design meant the engine was structurally positioned for exactly this market regime.
+        </div>
+    </div>
+
+    <div class="insight-block green">
+        <div class="insight-label good">STRENGTH · DYNAMIC POSITION SIZING</div>
+        <div class="insight-text">
+            Signal strength drives gradual position scaling. DOGE's June performance (+28.1%) shows the engine <strong>rapidly increased conviction</strong> as new market signals emerged. The model aggressively deployed into the favorable regime, delivering the best month-over-month improvement in the cohort (+37.1).
+        </div>
+    </div>
+
+    <div class="insight-block">
+        <div class="insight-label obs">STRENGTH · MULTI-ALPHA DIVERSIFICATION</div>
+        <div class="insight-text">
+            Multiple alpha signals balance each other, producing low net exposure (16–26% for V1/V2 strategies). Less capital at risk per signal — critical for consistent performance across diverse market regimes. The engine doesn't need to be right on every signal, just on the aggregate.
+        </div>
+    </div>
+
+    <div class="insight-block green">
+        <div class="insight-label good">STRENGTH · V2 ENGINE SUPERIORITY</div>
+        <div class="insight-text">
+            DOGE (V2) led the cohort with +28.1% June ROI and the highest Sharpe (3.46). The V2 model's <strong>improved signal filtering and risk management</strong> are clearly differentiating from V1. The V1 strategies (ADA, SOL, LINK) still delivered solid performance, but V2's edge is pronounced.
+        </div>
+    </div>
+
+    <div class="insight-block">
+        <div class="insight-label obs">STRENGTH · REAL-TIME LEARNING</div>
+        <div class="insight-text">
+            Visible in ADA's acceleration (May +3.0% → June +14.9%) and LINK's steady improvement (May +2.1% → June +9.7%). All 4 strategies improved MoM — the <strong>strongest collective signal</strong> that the engine's adaptive learning is compounding alpha discovery.
+        </div>
+    </div>
+
+    <div class="insight-block">
+        <div class="insight-label obs">STRENGTH · ALGO EXECUTION</div>
+        <div class="insight-text">
+            Proprietary AI order execution minimizes slippage — particularly important for high-frequency strategies like LINK (5,121 trades) and DOGE (3,511 trades), where <strong>execution quality determines net alpha capture</strong>.
+        </div>
+    </div>
+
+    <div class="insight-block orange">
+        <div class="insight-label warn-label">STRENGTH · CAPITAL EFFICIENCY</div>
+        <div class="insight-text">
+            Low net exposure (16–26%) means the engine extracts alpha with minimal capital at risk. SOL's <strong>263 trades generating +524% cumulative ROI</strong> is the epitome of quality over quantity — selective, high-conviction positioning.
+        </div>
+    </div>
+</section>
+
+<!-- 08 // RISK & DRAWDOWN -->
+<section>
+    <div class="section-num">08 // RISK &amp; DRAWDOWN</div>
+    <h2 class="section-title">Drawdown Profile &amp; Risk Assessment</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Asset</th>
+                <th>Historical Max DD</th>
+                <th>June Behavior</th>
+                <th>Risk Level</th>
+                <th>Assessment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">ADA</td>
+                <td class="highlight">16.46%</td>
+                <td class="highlight">Smooth uptrend</td>
+                <td class="highlight">LOW</td>
+                <td>Lowest max DD in cohort. June's +14.9% came with smooth equity curve. Consistent, dependable performer.</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">DOGE</td>
+                <td class="highlight">17.99%</td>
+                <td class="highlight">Full recovery from May DD</td>
+                <td class="highlight">LOW</td>
+                <td>Second-lowest max DD. Engine demonstrated elite risk control. Sharpe 3.46 confirms best-in-class risk-adjusted returns.</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">LINK</td>
+                <td class="neutral">18.95%</td>
+                <td class="highlight">Steady gains</td>
+                <td class="neutral">MODERATE</td>
+                <td>Moderate drawdown profile. High trade count (5,121) reflects active signal generation and risk management. Consistent performer.</td>
+            </tr>
+            <tr>
+                <td style="color:var(--text);font-weight:600;">SOL</td>
+                <td class="neutral">23.88%</td>
+                <td class="highlight">Accelerating gains</td>
+                <td class="neutral">MODERATE</td>
+                <td>Highest max DD among the group. Low trade count (263) reflects selective, high-conviction positioning for maximum capital efficiency.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 09 // VERDICT -->
+<section>
+    <div class="section-num">09 // VERDICT</div>
+    <h2 class="section-title">Strategic Assessment</h2>
+
+    <div class="narrative-block">
+        <h4><span class="icon doge-icon">DOGE</span> The Risk-Adjusted Champion</h4>
+        <p>
+            DOGE's June +28.1% ROI — the highest in the cohort — is a testament to the engine's adaptive real-time learning.
+            With the highest Sharpe (3.46) and second-lowest max DD (17.99%),
+            DOGE is the risk-adjusted champion. The V2 engine's improved signal filtering is the clear differentiator,
+            delivering outsized alpha with minimal capital at risk.
+        </p>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon ada-icon">ADA</span> The Risk-Efficient Alpha</h4>
+        <p>
+            ADA's lowest max drawdown (16.46%) and strong June (+14.9%) show that the V1 engine delivers robust alpha
+            when paired with the right market characteristics. Consistent performer with smooth equity curve — the dependable workhorse.
+        </p>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon sol-icon">SOL</span> Quality Over Quantity</h4>
+        <p>
+            SOL's 263 lifetime trades generating +524% cumulative ROI is the epitome of capital efficiency.
+            June's +14.2% was its best 2026 month, showing the engine is improving its signal selection over time.
+            Fewer trades, higher conviction — the anti-volume approach that maximizes alpha per trade.
+        </p>
+    </div>
+
+    <div class="narrative-block">
+        <h4><span class="icon link-icon">LINK</span> The Steady Eddie</h4>
+        <p>
+            LINK's +9.7% June ROI came with the most consistent 2026 track record.
+            Its 5,121 trades and 18.95% max DD make it a dependable workhorse for diversified deployment.
+            The engine's consistent signal generation ensures steady alpha capture across varying market conditions.
+        </p>
+    </div>
+
+    <div class="insight-block green" style="margin-top:24px;">
+        <div class="insight-label good">BOTTOM LINE</div>
+        <div class="insight-text">
+            June 2026 was a textbook showcase for the Hackworth OptimaShort engine. <strong>All 4 strategies delivered positive ROI</strong>,
+            averaging +16.7% with a 100% win rate across the cohort.
+            The short-bias design, combined with adaptive real-time learning and dynamic position sizing, converted market conditions into consistent alpha.
+            DOGE's +28.1% headline performance is the standout story — proof that the engine thrives in volatile conditions,
+            recalibrating and deploying with conviction. In a market defined by uncertainty, the OptimaShort engine stayed mechanical and delivered.
+        </div>
+    </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- Footer -->
+<div class="footer">
+    <div class="container">
+        <img src="https://alphanet.global/assets/logo-Bx0-plbv.webp" alt="AlphaNet" class="footer-logo">
+        <div class="footer-nav">
+            <a href="https://trade.alphanet.global/strategies">Strategy Marketplace</a>
+            <a href="https://hs.alphanet.global">Hackworth Series</a>
+            <a href="https://wp.alphanet.global">Whitepaper</a>
+        </div>
+        <div class="footer-disclaimer">
+            Data as of June 30, 2026. This report provides a snapshot of selected strategy performance and engine architecture for reference only and does not constitute investment advice. Cryptocurrency trading involves significant risk, and past performance does not guarantee future results.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
